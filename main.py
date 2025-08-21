@@ -20,7 +20,7 @@ birthdays_dict = {(data_row.month, data_row.day): data_row for (index, data_row)
 print(birthdays_dict)
 if today in birthdays_dict:
     person = birthdays_dict[today]
-    file_path = f"letter_templates/letter_{random.randint(1,4)}.txt"
+    file_path = f"letter_templates/letter_{random.randint(1,3)}.txt"
     with open(file_path) as file:
         contents = file.read()
         contents = contents.replace("[NAME]", person["name"])
@@ -29,4 +29,5 @@ if today in birthdays_dict:
         connection.starttls()
         connection.login(MY_EMAIL, password="*********")
         connection.send_message(from_addr=MY_EMAIL, to_addrs=person["email"], msg=f"Subject: Happy Birthday To You! \n\n{contents}")
+
 
